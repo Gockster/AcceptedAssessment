@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+
+</head>
+
+<body>
+
+	<div class="container">
+		<form action="/matches/save" th:object="${match}" method="POST">
+		<input type="text" placeholder="Match Description" th:field="${match.description}">
+		<input type="date" placeholder="Match Date" th:field="${match.match_date}">
+		<!-- <input type="time" placeholder="Match Time" th:field="${match.match_time}"> -->
+		<input type="text" placeholder="Team A" th:field="${match.team_a}">
+		<input type="text" placeholder="Team B" th:field="${match.team_b}">
+		<select th:field="${match.sport}">
+			<option th:value="Football">Football</option>
+			<option th:value="Basketball">Basketball</option>
+		</select>
+		<button type="submit">Create Match</button>
+		</form>
+	</div>
+	
+</body>
+
+</html>
