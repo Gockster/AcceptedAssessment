@@ -1,7 +1,6 @@
 package com.gdim.accepted.entities;
 
-import java.sql.Time;
-import java.util.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -20,7 +19,7 @@ public class Match {
 	private long matchId;
 	private String description;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	private Date match_date;
+	private String match_date;
 	private String team_a;
 	private String team_b;
 	private String sport;
@@ -40,9 +39,7 @@ public class Match {
 		this.matchOdds = matchOdds;
 	}
 
-
-
-	public Match(String description, Date match_date, String team_a, String team_b, String sport) {
+	public Match(String description, String match_date, String team_a, String team_b, String sport) {
 		super();
 		this.description = description;
 		this.match_date = match_date; 
@@ -67,11 +64,11 @@ public class Match {
 		this.description = description;
 	}
 
-	public Date getMatch_date() {
+	public String getMatch_date() {
 		return match_date;
 	}
 
-	public void setMatch_date(Date match_date) {
+	public void setMatch_date(String match_date) {
 		this.match_date = match_date;
 	}
 
@@ -97,6 +94,13 @@ public class Match {
 
 	public void setSport(String sport) {
 		this.sport = sport;
+	}
+	
+	public void addMatchOdd(MatchOdd matchOdd) {
+		if(matchOdds ==null) {
+			matchOdds = new ArrayList<>();
+		}
+		matchOdds.add(matchOdd);
 	}
 
 }
