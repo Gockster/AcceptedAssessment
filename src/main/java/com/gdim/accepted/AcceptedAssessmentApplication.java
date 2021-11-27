@@ -25,35 +25,7 @@ public class AcceptedAssessmentApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(AcceptedAssessmentApplication.class, args);
 	}
-
-	@Bean
-	CommandLineRunner runner() {
-
-		return args -> {
-
-			MatchOdd matchOdd1 = new MatchOdd("x", 2);
-			MatchOdd matchOdd2 = new MatchOdd("x", 2);
-			
-			Match match1 = new Match("AEK-PAO", "1-10-2021", "AEK", "PAO", "FOOTBAL");
-			Match match2 = new Match("AEK-OSFP", "1-1-2021", "AEK", "OSFP", "BASKETBALL");
-			
-			/*
-			 * match1.addMatchOdd(matchOdd1); match2.addMatchOdd(matchOdd2);
-			 * 
-			 * matchOdd1.setMatch((Match) Arrays.asList(match1, match2));
-			 */
-			
-			
-			matchOddRepository.save(matchOdd1);
-			matchOddRepository.save(matchOdd2);
-			
-			matchRepository.save(match1);
-			matchRepository.save(match2);
-			
-			
-			
-			
-		};
-	}
-
 }
+	
+
+

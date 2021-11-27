@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class MatchOdd {
 	
@@ -21,6 +23,7 @@ public class MatchOdd {
 	@ManyToOne(cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH},
 			fetch = FetchType.LAZY)
 	@JoinColumn(name="match_id")
+	@JsonIgnore
 	private Match match;
 	
 	public MatchOdd() {

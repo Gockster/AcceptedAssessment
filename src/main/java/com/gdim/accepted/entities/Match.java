@@ -1,6 +1,6 @@
 package com.gdim.accepted.entities;
 
-import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -11,6 +11,8 @@ import javax.persistence.OneToMany;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Match {
 
@@ -18,13 +20,14 @@ public class Match {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long matchId;
 	private String description;
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	/* @DateTimeFormat(pattern = "yyyy-MM-dd") */
 	private String match_date;
 	private String team_a;
 	private String team_b;
 	private String sport;
 	
 	@OneToMany(mappedBy="match")
+	@JsonIgnore
 	private List<MatchOdd> matchOdds;
 
 	public Match() {
@@ -38,6 +41,8 @@ public class Match {
 	public void setMatchOdds(List<MatchOdd> matchOdds) {
 		this.matchOdds = matchOdds;
 	}
+
+
 
 	public Match(String description, String match_date, String team_a, String team_b, String sport) {
 		super();
@@ -94,13 +99,6 @@ public class Match {
 
 	public void setSport(String sport) {
 		this.sport = sport;
-	}
-	
-	public void addMatchOdd(MatchOdd matchOdd) {
-		if(matchOdds ==null) {
-			matchOdds = new ArrayList<>();
-		}
-		matchOdds.add(matchOdd);
 	}
 
 }

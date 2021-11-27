@@ -7,7 +7,6 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -16,59 +15,48 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.gdim.accepted.dao.MatchRepository;
+import com.gdim.accepted.dao.MatchOddRepository;
 import com.gdim.accepted.entities.Match;
+import com.gdim.accepted.entities.MatchOdd;
 
 @RestController
-@RequestMapping("/app-api/matches")
-public class MatchApiController {
+@RequestMapping("/app-api/matchodds")
+public class MatchOddApiController {
 
 	@Autowired
-	MatchRepository matchRepository;
+	MatchOddRepository matchOddRepository;
 
 	@GetMapping
-	public List<Match> getMatches() {
-		return matchRepository.findAll();
+	public List<MatchOdd> getMatchOdds() {
+		return matchOddRepository.findAll();
 	}
 
 	@GetMapping("/{id}")
-	public Match getMatchById(@PathVariable("id") Long id) {
-		return matchRepository.findById(id).get();
+	public MatchOdd getMatchOddById(@PathVariable("id") Long id) {
+		return matchOddRepository.findById(id).get();
 	}
 
 	@PostMapping(consumes = "application/json")
 	@ResponseStatus(HttpStatus.CREATED)
-	public Match create(@RequestBody Match match) {
-		return matchRepository.save(match);
+	public MatchOdd create(@RequestBody MatchOdd matchOdd) {
+		return matchOddRepository.save(matchOdd);
 	}
 
 	@PutMapping(path = "/{id}", consumes = "application/json")
 	@ResponseStatus(HttpStatus.OK)
-	public Match update(@RequestBody Match match) {
-		return matchRepository.save(match);
-	}
-	
-	@PatchMapping(path="{id}", consumes="application/json")
-	public Match partialUpdate(@PathVariable("id") Long id, @RequestBody Match patchMatch) {
-		Match match = matchRepository.findById(id).get();
-		if (patchMatch.getDescription() != null) {
-			match.setDescription(patchMatch.getDescription());
-		}
-		
-		if (patchMatch.getMatch_date() != null) {
-			match.setMatch_date(patchMatch.getMatch_date());
-		}
-		return matchRepository.save(match);
+	public MatchOdd update(@RequestBody MatchOdd matchOdd) {
+		return matchOddRepository.save(matchOdd);
 	}
 
 	@DeleteMapping("/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void delete(@PathVariable("id") Long id) {
 		try {
-			matchRepository.deleteById(id);
+			matchOddRepository.deleteById(id);
 		} catch (EmptyResultDataAccessException e) {
 
 		}
 	}
 
 }
+
