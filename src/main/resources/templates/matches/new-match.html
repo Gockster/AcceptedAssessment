@@ -20,6 +20,12 @@
 				<option th:value="Football">Football</option>
 				<option th:value="Basketball">Basketball</option>
 			</select>
+			<select th:field="${match.matchOdds}" multiple="multiple">
+					<option th:each = "matchOdd : ${allMatchOdds}"
+					        th:value = "${matchOdd.matchOddId}"
+					        th:text  = "${matchOdd.specifier}">
+					 </option>
+			</select> 
 			<button type="submit">Create Match</button>
 		</form>
 	</div>

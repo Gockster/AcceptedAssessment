@@ -2,11 +2,13 @@ package com.gdim.accepted.entities;
 
 import java.sql.Time;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -15,35 +17,46 @@ public class Match {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id;
+	private long matchId;
 	private String description;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date match_date;
-	/* private Time match_time; */
 	private String team_a;
 	private String team_b;
 	private String sport;
+	
+	@OneToMany(mappedBy="match")
+	private List<MatchOdd> matchOdds;
 
 	public Match() {
 
 	}
+	
+	public List<MatchOdd> getMatchOdds() {
+		return matchOdds;
+	}
 
-	public Match(String description, Date match_date, Time match_time, String team_a, String team_b, String sport) {
+	public void setMatchOdds(List<MatchOdd> matchOdds) {
+		this.matchOdds = matchOdds;
+	}
+
+
+
+	public Match(String description, Date match_date, String team_a, String team_b, String sport) {
 		super();
 		this.description = description;
-		this.match_date = match_date;
-		/* this.match_time = match_time; */ 
+		this.match_date = match_date; 
 		this.team_a = team_a;
 		this.team_b = team_b;
 		this.sport = sport;
 	}
 
-	public long getId() {
-		return id;
+	public long getMatchId() {
+		return matchId;
 	}
 
-	public void setId(long id) {
-		this.id = id;
+	public void setMatchId(long matchId) {
+		this.matchId = matchId;
 	}
 
 	public String getDescription() {
@@ -61,12 +74,6 @@ public class Match {
 	public void setMatch_date(Date match_date) {
 		this.match_date = match_date;
 	}
-
-	/*
-	 * public Time getMatch_time() { return match_time; }
-	 * 
-	 * public void setMatch_time(Time match_time) { this.match_time = match_time; }
-	 */
 
 	public String getTeam_a() {
 		return team_a;

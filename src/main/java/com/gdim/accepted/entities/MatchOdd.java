@@ -1,36 +1,54 @@
 package com.gdim.accepted.entities;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class MatchOdd {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private long id;
-	private long match_id;
+	private long matchOddId; 
 	private String specifier;
 	private double odd;
+	
+	@ManyToOne(cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH},
+			fetch = FetchType.LAZY)
+	@JoinColumn(name="match_id")
+	private Match match;
 	
 	public MatchOdd() {
 		
 	}
 	
-	public MatchOdd(long match_id, String specifier, double odd) {
+	public MatchOdd(String specifier, double odd) {
 		super();
-		this.match_id = match_id;
 		this.specifier = specifier;
-		this.odd = odd;
+		this.odd = odd;	
 	}
-	public long getMatch_id() {
-		return match_id;
+	
+	public long getMatchOddId() {
+		return matchOddId;
 	}
-	public void setMatch_id(long match_id) {
-		this.match_id = match_id;
+
+	public void setMatchOddId(long matchOddId) {
+		this.matchOddId = matchOddId;
 	}
+
+	public Match getMatch() {
+		return match;
+	}
+
+	public void setMatch(Match match) {
+		this.match = match;
+	}
+
 	public String getSpecifier() {
 		return specifier;
 	}
