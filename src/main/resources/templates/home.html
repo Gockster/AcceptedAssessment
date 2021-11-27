@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layouts :: header"></head>
+<body>
+
+	<nav th:replace="layouts :: navbar"></nav>
+
+	<div>
+		<h4>Matches</h4>
+		<table class="table table-bordered table-striped">
+			<thead class="thead-dark">
+				<tr>
+					<th>Description</th>
+					<th>Match Date</th>
+					<th>Team A</th>
+					<th>Team B</th>
+					<th>Sport</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="aMatch : ${matchesList}">
+					<td th:text="${aMatch.description}" />
+					<td th:text="${aMatch.match_date}" />
+					<td th:text="${aMatch.team_a}" />
+					<td th:text="${aMatch.team_b}" />
+					<td th:text="${aMatch.sport}" />
+
+				</tr>
+			</tbody>
+
+		</table>
+
+	</div>
+	<br><br>
+	<div>
+	<h4>Match Odds</h4>
+		<table class="table table-bordered table-striped">
+			<thead class="thead-dark">
+				<tr>
+					<th>Specifier</th>
+					<th>Odd</th>
+
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="aMatchOdd : ${matchOddsList}">
+					<td th:text="${aMatchOdd.specifier}" />
+					<td th:text="${aMatchOdd.odd}" />
+				</tr>
+			</tbody>
+
+		</table>
+	
+	
+	</div>
+</body>

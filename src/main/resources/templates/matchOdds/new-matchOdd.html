@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<nav th:replace="layouts :: header"></nav>
+
+
+<body>
+     <nav th:replace="layouts :: navbar"></nav>
+	<div class="container">
+		<form action="/matchOdds/save" th:object="${matchOdd}" method="POST">
+		<input type="text" placeholder="Specifier" th:field="${matchOdd.specifier}">
+		<input type="number" placeholder="Odd" th:field="${matchOdd.odd}">
+
+		<button type="submit">Create Match Odd</button>
+		</form>
+	</div>
+	
+</body>
+
+</html>

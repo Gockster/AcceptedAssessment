@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	
+	<head th:replace="layouts :: header"></head>
+	
+	<body>
+	
+	<nav th:replace="layouts :: navbar"></nav>
+	
+		<div class="container">
+			<h3>Matches</h3>
+			<hr>
+			
+			
+			<a th:href="@{/matches/new}"
+				class="btn btn-primary btn-sm mb-3">Add Match</a><br>
+			<table class="table table-bordered table-striped">
+			<thead class="thead-dark">
+				<tr>
+					<th>Description</th>
+					<th>Match Date</th>
+					<th>Team A</th>
+					<th>Team B</th>
+					<th>Sport</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="aMatch : ${matchesList}">
+					<td th:text="${aMatch.description}" />
+					<td th:text="${aMatch.match_date}" />
+					<td th:text="${aMatch.team_a}" />
+					<td th:text="${aMatch.team_b}" />
+					<td th:text="${aMatch.sport}" />
+
+				</tr>
+			</tbody>
+
+		</table>
+		</div>
+	</body>
+	
+</html>
