@@ -1,5 +1,6 @@
 package com.gdim.accepted.entities;
 
+import java.sql.Time;
 import java.util.Date;
 import java.util.List;
 
@@ -20,8 +21,9 @@ public class Match {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long matchId;
 	private String description;
-	/* @DateTimeFormat(pattern = "yyyy-MM-dd") */
+	/* @DateTimeFormat(pattern = "MM-dd-yyyy") */
 	private String match_date;
+	private String match_time;
 	private String team_a;
 	private String team_b;
 	private String sport;
@@ -44,13 +46,15 @@ public class Match {
 
 
 
-	public Match(String description, String match_date, String team_a, String team_b, String sport) {
+	public Match(String description, String match_date, String team_a, String team_b, String sport, String match_time) {
 		super();
 		this.description = description;
 		this.match_date = match_date; 
 		this.team_a = team_a;
 		this.team_b = team_b;
 		this.sport = sport;
+		this.match_time=match_time;
+		
 	}
 
 	public long getMatchId() {
@@ -100,5 +104,15 @@ public class Match {
 	public void setSport(String sport) {
 		this.sport = sport;
 	}
+
+	public String getMatch_time() {
+		return match_time;
+	}
+
+	public void setMatch_time(String match_time) {
+		this.match_time = match_time;
+	}
+	
+	
 
 }
